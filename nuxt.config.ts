@@ -1,8 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss"],
-
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode"],
+  colorMode: {
+    classSuffix: "",
+  },
   runtimeConfig: {
     testSecret: "this is a secret",
     public: {

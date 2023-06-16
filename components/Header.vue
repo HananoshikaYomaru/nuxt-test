@@ -1,5 +1,3 @@
-import { AtomsTypographyH1 } from '~/.nuxt/components';
-
 <template>
   <header class="flex justify-between py-4">
     <div>
@@ -27,6 +25,19 @@ import { AtomsTypographyH1 } from '~/.nuxt/components';
       </div>
     </div>
     <!-- the theme button  -->
-    <div></div>
+    <div>
+      <button @click="good()">theme</button>
+    </div>
   </header>
 </template>
+
+<script>
+export default {
+  methods: {
+    good(temp) {
+      this.$colorMode.preference =
+        this.$colorMode.preference === "light" ? "dark" : "light";
+    },
+  },
+};
+</script>
