@@ -27,14 +27,6 @@ import { AtomsTypographyH1 } from '~/.nuxt/components';
       </div>
     </div>
     <!-- the theme button  -->
-    <div>
-      <UButton
-        icon="i-heroicons-pencil-square"
-        size="sm"
-        color="primary"
-        square
-        variant="outline"
-      />
-    </div>
+    <div></div>
   </header>
 </template>
