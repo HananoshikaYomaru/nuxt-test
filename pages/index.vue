@@ -2,6 +2,10 @@
 import { ref } from "vue";
 import { state } from "@/composables/store";
 
+definePageMeta({
+  middleware: "auth",
+});
+
 const value = ref("");
 // only show the tasks today
 const tasks = ref(
@@ -16,6 +20,9 @@ const tasks = ref(
 );
 
 function addTask() {
+  if (value.value.trim().length === 0) {
+    return;
+  }
   tasks.value.push({
     id: tasks.value.length + 1,
     title: value.value,

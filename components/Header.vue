@@ -26,18 +26,15 @@
     </div>
     <!-- the theme button  -->
     <div>
-      <button @click="good()">theme</button>
+      <button @click="toggleTheme()">theme</button>
     </div>
   </header>
 </template>
 
-<script>
-export default {
-  methods: {
-    good(temp) {
-      this.$colorMode.preference =
-        this.$colorMode.preference === "light" ? "dark" : "light";
-    },
-  },
-};
+<script setup lang="ts">
+const colorMode = useColorMode();
+
+function toggleTheme() {
+  colorMode.preference = colorMode.preference === "light" ? "dark" : "light";
+}
 </script>
