@@ -3,7 +3,17 @@ import { ref } from "vue";
 import { state } from "@/composables/store";
 
 const value = ref("");
-const tasks = ref(state.tasks);
+// only show the tasks today
+const tasks = ref(
+  state.tasks.filter((task) => {
+    const today = new Date();
+    return (
+      task.createdAt.getDate() === today.getDate() &&
+      task.createdAt.getMonth() === today.getMonth() &&
+      task.createdAt.getFullYear() === today.getFullYear()
+    );
+  })
+);
 
 function addTask() {
   tasks.value.push({
@@ -11,6 +21,7 @@ function addTask() {
     title: value.value,
     completed: false,
     createdAt: new Date(),
+    updatedAt: new Date(),
   });
   value.value = "";
 }
@@ -26,6 +37,26 @@ function addTask() {
       >Create Task</AtomsButton
     >
   </div>
+  <AtomsTypographyH4 class="my-4">🏗️ Todo items</AtomsTypographyH4>
+
   <!-- the list of tasks  -->
-  <TodoList :tasks="tasks" />
+  <TodoList
+    :tasks="
+      tasks
+        .filter((t) => !t.completed)
+        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+    "
+  />
+
+  <!-- Done tasks -->
+  <AtomsTypographyH4 class="my-4">✅ Done tasks</AtomsTypographyH4>
+  <TodoList
+    :tasks="
+      tasks
+        .filter((t) => t.completed)
+        .sort((a, b) => {
+          return b.updatedAt.getTime() - a.updatedAt.getTime();
+        })
+    "
+  />
 </template>

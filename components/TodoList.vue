@@ -1,18 +1,14 @@
 <template>
-  <div>
-    <AtomsTypographyH4 class="my-4">Todo items</AtomsTypographyH4>
-    <ul>
-      <li
-        v-for="task in tasks.sort((a, b) => {
-          return b.createdAt.getTime() - a.createdAt.getTime();
-        })"
-        :key="task.id"
-      >
-        <input type="checkbox" v-model="task.completed" />
-        <span :class="{ completed: task.completed }">{{ task.title }}</span>
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li v-for="task in tasks" :key="task.id">
+      <input
+        type="checkbox"
+        :checked="task.completed"
+        @change="toggleCompleted(task)"
+      />
+      <span :class="{ completed: task.completed }">{{ task.title }}</span>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +21,11 @@ const props = defineProps({
     required: true,
   },
 });
+
+function toggleCompleted(task: Task) {
+  task.completed = !task.completed;
+  task.updatedAt = new Date();
+}
 </script>
 
 <style>
