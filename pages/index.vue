@@ -1,19 +1,31 @@
 <script setup lang="ts">
-const route = useRoute();
-const {
-  public: { publicKey },
-} = useRuntimeConfig();
+import { ref } from "vue";
+import { state } from "@/composables/store";
+
+const value = ref("");
+const tasks = ref(state.tasks);
+
+function addTask() {
+  tasks.value.push({
+    id: tasks.value.length + 1,
+    title: value.value,
+    completed: false,
+    createdAt: new Date(),
+  });
+  value.value = "";
+}
 </script>
 
 <template>
-  <div>
-    <h1>Color mode: {{ $colorMode.value }}</h1>
-    <h1>Nuxt Routing set up successfully!</h1>
-    <p>Current route: {{ route.path }}</p>
-    <p>This is the public key : {{ publicKey }}</p>
-    <AppAlert />
-    <a href="https://nuxt.com/docs/getting-started/routing" target="_blank"
-      >Learn more about Nuxt Routing</a
+  <div class="flex flex-row gap-3">
+    <AtomsInput v-model:value="value" />
+    <AtomsButton
+      class="whitespace-nowrap"
+      @click="addTask"
+      :disabled="value === ''"
+      >Create Task</AtomsButton
     >
   </div>
+  <!-- the list of tasks  -->
+  <TodoList :tasks="tasks" />
 </template>

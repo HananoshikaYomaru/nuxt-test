@@ -1,5 +1,5 @@
 <template>
-  <header class="flex justify-between py-4">
+  <header class="flex justify-between py-4 w-full">
     <div>
       <!-- dummy -->
     </div>
@@ -8,17 +8,17 @@
       <div class="flex space-x-4">
         <NuxtLink
           to="/"
-          class="text-gray-700 font-bold py-2 px-4 hover:text-gray-900"
+          class="text-gray-700 font-bold py-2 px-4 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
           >Today</NuxtLink
         >
         <NuxtLink
           to="/all"
-          class="text-gray-700 font-bold py-2 px-4 hover:text-gray-900"
+          class="text-gray-700 font-bold py-2 px-4 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
           >All</NuxtLink
         >
         <NuxtLink
           to="/done"
-          class="text-gray-700 font-bold py-2 px-4 hover:text-gray-900"
+          class="text-gray-700 font-bold py-2 px-4 hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
         >
           Done
         </NuxtLink>
